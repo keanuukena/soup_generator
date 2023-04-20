@@ -1,7 +1,26 @@
+class Data():
+	def __init__(self):
+		self.room_x_axis = 2
+		self.room_y_axis = 2
+	
+	@property
+	def room_y_axis(self):
+		return self.__room_y_axis
+	@room_y_axis.setter
+	def room_y_axis(self, new):
+		if 1 <= new and new <= 3:
+			self.__room_y_axis = new
+
+	@property
+	def room_x_axis(self):
+		return self.__room_x_axis
+	@room_x_axis.setter
+	def room_x_axis(self, new):
+		if 1 <= new and new <= 3:
+			self.__room_x_axis = new
+
 def main():
-	data = "cheese"
-	room_x_axis = 2
-	room_y_axis = 2
+	r = Data()
 
 	print("""	Welcome to Soup Generator!
 ------------------------------------------
@@ -43,23 +62,23 @@ Q - Quit
 			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "N":
-			room_y_axis += 1
-			room_name = (room(data, room_x_axis, room_y_axis))
+			r.room_y_axis += 1
+			room_name = (room(r))
 			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "S":
-			room_y_axis -= 1
-			room_name = (room(data, room_x_axis, room_y_axis))
+			r.room_y_axis -= 1
+			room_name = (room(r))
 			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "E":
-			room_x_axis += 1
-			room_name = (room(data, room_x_axis, room_y_axis))
+			r.room_x_axis += 1
+			room_name = (room(r))
 			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "W":
-			room_x_axis -= 1
-			room_name = (room(data, room_x_axis, room_y_axis))
+			r.room_x_axis -= 1
+			room_name = (room(r))
 			print(f"\nRight now you're at the {room_name}")
 			
 		elif choice == "Q":
@@ -70,36 +89,33 @@ Q - Quit
 
 
 
-def room(data, room_x_axis, room_y_axis):
-	if room_x_axis > 3:
-		room_x_axis -= 1
-	if room_y_axis > 3:
-		room_y_axis -= 1
-	if room_x_axis == 1 and room_y_axis == 1:
+def room(r):
+	data = "cheese"
+	if r.room_x_axis == 1 and r.room_y_axis == 1:
 		data = "cove"
 
-	if room_x_axis == 2 and room_y_axis == 1:
+	if r.room_x_axis == 2 and r.room_y_axis == 1:
 		data = "farms"
 
-	if room_x_axis == 3 and room_y_axis == 1:
+	if r.room_x_axis == 3 and r.room_y_axis == 1:
 		data = "thicket"
 
-	if room_x_axis == 1 and room_y_axis == 2:
+	if r.room_x_axis == 1 and r.room_y_axis == 2:
 		data = "woods"
 
-	if room_x_axis == 1 and room_y_axis == 3:
+	if r.room_x_axis == 1 and r.room_y_axis == 3:
 		data = "grove"
 
-	if room_x_axis == 2 and room_y_axis == 2:
+	if r.room_x_axis == 2 and r.room_y_axis == 2:
 		data = "tower"
 
-	if room_x_axis == 2 and room_y_axis == 3:
+	if r.room_x_axis == 2 and r.room_y_axis == 3:
 		data = "cave"
 
-	if room_x_axis == 3 and room_y_axis == 2:
+	if r.room_x_axis == 3 and r.room_y_axis == 2:
 		data = "fields"
 
-	if room_x_axis == 3 and room_y_axis == 3:
+	if r.room_x_axis == 3 and r.room_y_axis == 3:
 		data = "marshes"
 
 	return data
