@@ -32,7 +32,7 @@ to feed him something else...
 	
 Luckily, you have your magical cookbook
 your grandma gave you when you
-inherited the farm. Only you can
+inherited her tower. Only you can
 save your flock from a terrible doom!""")
 
 	menu = """
@@ -53,33 +53,57 @@ Q - Quit
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"""
 
 	while choice != "Q":
+		print(f"\nRight now you're at the {room_name}")
+
+		if room_name == "tower":
+			print(f"\nGrandma's cookbook is still on the table. (Press 'I' to interact.)")
+
+		if room_name == "cave":
+			print(f"\nDank yellow-brown mushrooms glow in the darkness.\nThere is also a dark area of the cave you can't see.")
+		
+		if room_name == "marshes":
+			print(f"\nSky blue flowers poke out of the swamp.\nThere is also a foggy area across a lake.")
+
+		if room_name == "fields":
+			print(f"\nOrange roots sprout up out of the grass.\nThe vast land looks too far to travel though.")
+		
+		if room_name == "thicket":
+			print(f"\nGlowing bugs buzz around the bramble.\nThe rest of the thicket is blocked by huge wooden thorns.")
+
+		if room_name == "farms":
+			print(f"\nTasty fruit ripens in the sun.\nThere is also a patch of ungrown bean seeds.")
+
+		if room_name == "cove":
+			print(f"\nSuspicious snails ooze on the rocky shore.\nYou can feel something watching you from the watery depths...")
+
+		if room_name == "woods":
+			print(f"\nPlayful butterflies dance in the underbrush.\nA strange nest sits in the treetops.")
+
+		if room_name == "grove":
+			print(f"\nPeppery nuts fall from the leaves.\nA huge, watchful bear guards a stash of sparkly honey.")
+
 		print(menu)
 		choice = input("What is your choice?\n")
 		choice = choice.upper()
 
 		if choice == "M":
 			print(map)
-			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "N":
 			r.room_y_axis += 1
 			room_name = (room(r))
-			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "S":
 			r.room_y_axis -= 1
 			room_name = (room(r))
-			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "E":
 			r.room_x_axis += 1
 			room_name = (room(r))
-			print(f"\nRight now you're at the {room_name}")
 
 		elif choice == "W":
 			r.room_x_axis -= 1
 			room_name = (room(r))
-			print(f"\nRight now you're at the {room_name}")
 			
 		elif choice == "Q":
 			print("Goodbye.")
