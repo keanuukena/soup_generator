@@ -208,8 +208,27 @@ Q - Quit
 ▒ #3 sus snail        ▒ #3 dank shroom      ▒
 ▒                     ▒                     ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\n""")
-#dear future programming keanu, please finish off the rest of the cook book. I grow tired of it and want to make some potion effects!
-#The game will finally almost be playable. -testing keanu
+						if "funky root" in bag and "deez nuts" in bag and "sus snail" in bag:
+							ask_make = input("Do you want to make a speed potion? (y/n)\n")
+							ask_make = ask_make.lower()
+							if ask_make == "y":
+								print("Your silvery potion swooshes around in a bottle!")
+								bag.remove("funky root")
+								bag.remove("deez nuts")
+								bag.remove("sus snail")
+								bag.append("speed potion")
+								page = "6"
+
+						if "fuzz-butt" in bag and "bubbly butterfly" in bag and "dank shroom" in bag:
+							ask_make = input("Do you want to make a fire potion?\n")
+							ask_make == ask_make.lower()
+							if ask_make == "y":
+								print("Your hot red potion bubbles around in a bottle!")
+								bag.remove("fuzz-butt")
+								bag.remove("bubbly butterfly")
+								bag.remove("dank shroom")
+								bag.append("fire potion")
+								page = "6"
 
 					elif page == "3":
 						print("""
