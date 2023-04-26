@@ -51,6 +51,8 @@ Q - Quit
 	choice = "M"
 	room_name = "tower"
 	bag = []
+	game_end = False
+	bag_space = 8
 
 	map = """▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 ▒[grove][cave][marshes]▒
@@ -94,9 +96,9 @@ Q - Quit
 
 #dear future programming keanu, OMG I had an idea, what if you have limited bag space at the start but every time you pick up a tier 2 ingredient it upgrades?
 #this sounds like a baller idea, yo. -testing keanu
-		if len(bag) > 8:
+		if len(bag) > bag_space:
 			print("Your bag is full!")
-			del bag[8]
+			del bag[bag_space]
 
 #this is the input engine, it re-prints the menu, takes and capitalizes your choice so it's ready for processing.
 		print(menu)
@@ -223,7 +225,7 @@ Q - Quit
 							ask_make = input("Do you want to make a fire potion?\n")
 							ask_make == ask_make.lower()
 							if ask_make == "y":
-								print("Your hot red potion bubbles around in a bottle!")
+								print("Your hot red potion boils in a bottle!")
 								bag.remove("fuzz-butt")
 								bag.remove("bubbly butterfly")
 								bag.remove("dank shroom")
@@ -240,7 +242,27 @@ Q - Quit
 ▒ #3 deez nuts        ▒ #3 funky root       ▒
 ▒                     ▒                     ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\n""")
+						if "magic tomato" in bag and "sky-blue flower" in bag and "deez nuts" in bag:
+							ask_make == input("Do you want to make a growth potion?\n")
+							ask_make == ask_make.lower()
+							if ask_make == "y":
+								print("Your fizzy green potion seethes around in a bottle!")
+								bag.remove("magic tomato")
+								bag.remove("sky-blue flower")
+								bag.remove("deez nuts")
+								bag.append("growth potion")
+								page = "6"
 
+						if "sus snail" in bag and "dank shroom" in bag and "funky root" in bag:
+							ask_make == input("Do you want to make a water - breathing potion?\n")
+							ask_make == ask_make.lower()
+							if ask_make == "y":
+								print("Your deep blue potion rolls around in a bottle!")
+								bag.remove("sus snail")
+								bag.remove("dank shroom")
+								bag.remove("funky root")
+								bag.append("water - breathing potion")
+								page = "6"
 
 					elif page == "4":
 						print("""
@@ -252,7 +274,27 @@ Q - Quit
 ▒ #3 fuzz-butt        ▒ #3 magic tomato     ▒
 ▒                     ▒                     ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\n""")
+						if "bubbly butterfly" in bag and "sky-blue flower" in bag and "fuzz-butt" in bag:
+							ask_make == input("Do you want to make a hover potion?\n")
+							ask_make == ask_make.lower()
+							if ask_make == "y":
+								print("Your cloudy white floats around in a bottle!")
+								bag.remove("bubbly butterfly")
+								bag.remove("sky-blue flower")
+								bag.remove("fuzz-butt")
+								bag.append("hover potion")
+								page = "6"
 
+						if "deez nuts" in bag and "funky root" in bag and "magic tomato" in bag:
+							ask_make == input("Do you want to make an invisibility potion?\n")
+							ask_make == ask_make.lower()
+							if ask_make == "y":
+								print("Your clear potion wisps around in a bottle!")
+								bag.remove("deez nuts")
+								bag.remove("funky root")
+								bag.remove("magic tomato")
+								bag.append("invisibility potion")
+								page = "6"
 
 					elif page == "5":
 						print("""
@@ -265,10 +307,28 @@ Q - Quit
 ▒ #7 random egg      #8 pooh's honey        ▒
 ▒                                           ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒""")
+						if "crystal shard" in bag and "wisp lily" in bag and "mega wheats" in bag and "stick but" in bag and "deuce beans" in bag and "silver fish" in bag and "random egg" in bag and "pooh's honey" in bag:
+							ask_make == input("Do you want to make dragon soup?\n")
+							ask_make == ask_make.lower()
+							if ask_make == "y":
+								print("""
+Your dragon soup smells delicious. The smell wafts out of the tower window just as the dragon was waking up from his nap.
+*YAWN* says the dragon, following the smell. "What's that yo cookin!" he says with a yell.
+And sharing your soup, the dragon is content. He'll no longer eat your sheep one-hundred percent.
+"I daresay I'm sorry", the dragon replies. And back off too sleep, the dragon flies.
 
+You saved your sheep! Grandma would be proud.
+
+~~~       THE END       ~~~
+
+""")
+								page = "6"
+								game_end = True
+								choice = "Q"
 
 					elif page == "6":
-						print("You close the book.")
+						if game_end == False:
+							print("You close the book.")
 
 					else:
 						print("That page is still empty.")
@@ -289,6 +349,29 @@ Q - Quit
 		elif choice == "W":
 			r.room_x_axis -= 1
 			room_name = (room(r))
+
+		elif choice == "U":
+			print("These are your items...")
+			for i in bag:
+				print(i)
+			use_item = input("\nWhich item do you want to use? (Press 'n' to cancel)\n")
+			use_item = use_item.lower()
+			if "potion" not in use_item and use_item != "n":
+				try:
+					bag.remove(use_item)
+					print(f"Removed {use_item} from your bag.")
+				except ValueError:
+					print("That wasn't in your bag. (Maybe a spelling error?)")
+			if "potion" in use_item and use_item != "n":
+				if use_item == "speed potion" and room_name != "fields":
+					"You zoom around the place, but this doesn't seem to help. The problem with being faster than light is you can only live in darkness."
+				if use_item == "speed potion" and room_name == "fields":
+					"You zoom across the wide open plane, frolicking in the meadows. Oh hey, you found the mega wheats! You've only ever eaten the mini kind."
+					bag_space += 1
+					bag.append("mega wheats")
+
+#dear future programming keanu, this potion user doesn't work. Plz fix, it's no fun. -testing keanu
+
 
 #quit choice, it just says goodbye and since the infinite loop doesn't like Q it will exit the program after.
 		elif choice == "Q":
