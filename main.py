@@ -37,9 +37,9 @@ your grandma gave you when you
 inherited her tower. Only you can
 save your flock from a terrible doom!""")
 
-#dear furture programming keanu, please consider making a 'pro-mode' that hides the menu. It's getting on my nerves. -testing keanu
 	menu = """
 M - Open your map
+C - Controls
 N, E, S, or W - Move
 B - Bag
 U - Use an item
@@ -53,13 +53,16 @@ Q - Quit
 	bag = []
 	game_end = False
 	bag_space = 8
+	mega_wheats = False
+	stick_bug = False
+	deuce_beans = False
 
 	map = """▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 ▒[grove][cave][marshes]▒
 ▒[woods][tower][fields]▒
 ▒[cove][farms][thicket]▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"""
-
+	print(menu)
 #start the infinite loop, that will end if you choose the quit option. It also starts by telling you what room you're in so you don't get lost.
 	while choice != "Q":
 		print(f"\nRight now you're at the {room_name}")
@@ -92,16 +95,12 @@ Q - Quit
 		if room_name == "grove":
 			print(f"\nPeppery nuts fall from the leaves.\nA huge, watchful bear guards a stash of sparkly honey.")
 
-#bag remover. This annoying limit automatically drops the last item in your bag if it's ever fuller than 8 items. How rude.
-
-#dear future programming keanu, OMG I had an idea, what if you have limited bag space at the start but every time you pick up a tier 2 ingredient it upgrades?
-#this sounds like a baller idea, yo. -testing keanu
+#bag remover. This annoying limit automatically drops the last item in your bag if it's ever fuller than it should be. How rude.
 		if len(bag) > bag_space:
 			print("Your bag is full!")
 			del bag[bag_space]
 
 #this is the input engine, it re-prints the menu, takes and capitalizes your choice so it's ready for processing.
-		print(menu)
 		choice = input("What is your choice?\n")
 		choice = choice.upper()
 
@@ -109,12 +108,19 @@ Q - Quit
 		if choice == "M":
 			print(map)
 
+		elif choice == "C":
+			print(menu)
+
 #this is the bag check choice, it just tells you what you have in your bag using len() and a for loop.
 		elif choice == "B":
 			if len(bag) > 0:
+				bag_count = 0
+				for i in bag:
+					bag_count += 1
+				print(f"Your bag has {bag_count}/{bag_space} items.")
 				print("Right now in your bag you have...")
 				for item in bag:
-					print(item)
+					print(f"* {item}")
 			else:
 				print("Your bag is empty!")
 		
@@ -301,13 +307,13 @@ Q - Quit
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 ▒            ~~~ Dragon Soup ~~~            ▒
 ▒                                           ▒
-▒ #1 crystal shard   #2 wisp lily           ▒
-▒ #3 mega wheats     #4 stick bug           ▒
-▒ #5 deuce beans     #6 silver fish         ▒
-▒ #7 random egg      #8 pooh's honey        ▒
+▒ #1 crystal shard ★   #2 wisp lily ★      ▒
+▒ #3 mega wheats ★     #4 stick bug ★      ▒
+▒ #5 deuce beans ★     #6 silver fish ★    ▒
+▒ #7 random egg ★      #8 pooh's honey ★   ▒
 ▒                                           ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒""")
-						if "crystal shard" in bag and "wisp lily" in bag and "mega wheats" in bag and "stick but" in bag and "deuce beans" in bag and "silver fish" in bag and "random egg" in bag and "pooh's honey" in bag:
+						if "crystal shard ★" in bag and "wisp lily ★" in bag and "mega wheats ★" in bag and "stick bug ★" in bag and "deuce beans ★" in bag and "silver fish ★" in bag and "random egg ★" in bag and "pooh's honey ★" in bag:
 							ask_make == input("Do you want to make dragon soup?\n")
 							ask_make == ask_make.lower()
 							if ask_make == "y":
@@ -351,27 +357,128 @@ You saved your sheep! Grandma would be proud.
 			room_name = (room(r))
 
 		elif choice == "U":
-			print("These are your items...")
-			for i in bag:
-				print(i)
-			use_item = input("\nWhich item do you want to use? (Press 'n' to cancel)\n")
-			use_item = use_item.lower()
-			if "potion" not in use_item and use_item != "n":
-				try:
-					bag.remove(use_item)
-					print(f"Removed {use_item} from your bag.")
-				except ValueError:
-					print("That wasn't in your bag. (Maybe a spelling error?)")
-			if "potion" in use_item and use_item != "n":
-				if use_item == "speed potion" and room_name != "fields":
-					"You zoom around the place, but this doesn't seem to help. The problem with being faster than light is you can only live in darkness."
-				if use_item == "speed potion" and room_name == "fields":
-					"You zoom across the wide open plane, frolicking in the meadows. Oh hey, you found the mega wheats! You've only ever eaten the mini kind."
-					bag_space += 1
-					bag.append("mega wheats")
+			if len(bag) > 0:
+				print("These are your items...")
+				for i in bag:
+					print(f"* {i}")
+				use_item = input("\nWhich item do you want to use? (Press 'n' to cancel)\n")
+				use_item = use_item.lower()
+				if use_item == "crystal shard" or use_item == "wisp lily" or use_item == "mega wheats" or use_item == "stick bug" or use_item == "deuce beans" or use_item == "silver fish" or use_item == "random egg" or use_item == "pooh's honey":
+				 use_item += " ★"
+				if "potion" not in use_item and use_item != "n" and "★" not in use_item:
+					try:
+						bag.remove(use_item)
+						print(f"Removed {use_item} from your bag.")
+					except ValueError:
+						print("That wasn't in your bag. (Maybe a spelling error?)")
+				if "potion" in use_item and use_item != "n":
+					if use_item == "speed potion":
+						if room_name == "cave" or room_name == "thicket" or room_name == "forest":
+							bag.remove("speed potion")
+							print("Your heartbeat beats super fast. Nothing can stop you. Except for the obstacle you just ran into. Oof.")
+						elif room_name == "marshes" or room_name == "farms" or room_name == "cove" or room_name == "tower":
+							bag.remove("speed potion")
+							print("You zoom around the place, but this doesn't seem to help. The problem with being faster than light is you can only live in darkness.")
+						elif room_name == "grove":
+							bag.remove("speed potion")
+							print("You try to speed past the bear, juke it and break its ankles, but huge grizzly claws are great at swatting pests like you. Ouch. It also ate your dank shrooms.")
+							bag.remove("dank shroom")
+							bag.remove("dank shroom")
+							bag.remove("dank shroom")
+						else:
+							if mega_wheats == False:
+								print("You zoom across the wide open plane, frolicking in the meadows. Oh hey, you found the legendary mega wheats! You've only ever eaten the mini kind.")
+								bag_space += 1
+								bag.remove("speed potion")
+								bag.append("mega wheats ★")
+								mega_wheats = True
+							else:
+								bag.remove("speed potion")
+								print("You zoom around the place, but this doesn't seem to help. The problem with being faster than light is you can only live in darkness.")
 
-#dear future programming keanu, this potion user doesn't work. Plz fix, it's no fun. -testing keanu
+					if use_item == "fire potion":
+						if room_name == "cave" or room_name == "woods" or room_name == "grove":
+							bag.remove("fire potion")
+							print("Hot, stuffy smoke quickly fills the space and you're forced to retreat!")
+						if room_name == "marshes" or room_name == "fields" or room_name == "farms" or room_name == "tower":
+							bag.remove("fire potion")
+							print("The arson is great, but it doesn't seem to help in this situation. Maybe don't be so HOT-headed. heh heh..")
+						if room_name == "cove":
+							bag.remove("fire potion")
+							print("Congratulations! Your signal fire has attracted pirates to the cove! Unfortunately, the booty-ticklin crew is swift to plunder all of your fuzz-butts.")
+							bag.remove("fuzz-butt")
+							bag.remove("fuzz-butt")
+							bag.remove("fuzz-butt")
+						if room_name == "thicket":
+							if stick_bug == False:
+								bag.remove("fire potion")
+								print("You torch the thicket, blasting through as 'how bad could I possibly be' plays in your head. Hey, you found a dancing stick bug on the other side.")
+								bag_space += 2
+								bag.append("stick bug ★")
+								stick_bug = True
+							else:
+								bag.remove("fire potion")
+								print("The arson is great, but it doesn't seem to help in this situation. Maybe don't be so HOT-headed. heh heh..")
 
+						if use_item == "growth potion":
+							if room_name == "cave" room_name == "thicket" or room_name == "tower":
+								bag.remove("growth potion")
+								print("You grow tall enough to play basketball. Unfortunately, your size gets you stuck until it wears off. Kind of a BIG problem. heh heh..")\
+							if room_name == "marshes" or room_name == "cove" or room_name == "grove" or room_name == "fields"
+								bag.remove("growth potion")
+								print("You grow extraordinarily tall, but it's lonely up here. What would grandma think if she saw how fat you've gotten?")
+							if room_name == "grove":
+								bag.remove("growth potion")
+								print("You grow taller than the grove, tall enough to squish a bear! You can't see it in the trees, though.")
+							if room_name == "woods":
+								bag.remove("growth potion")
+								print("Giant butterflies are cool and all, but not when they eat all of your magic tomatoes!")
+								bag.remove("magic tomato")
+								bag.remove("magic tomato")
+								bag.remove("magic tomato")
+							if room_name == "farms":
+								if duece_beans = False:
+									bag.remove("growth potion")
+									print("The beans grow into rare deuce beans ★! The stinky smell grew a little, too.")
+									bag_space += 1
+									bag.append("deuce beans ★")
+									duece_beans = True
+								else:
+									bag.remove("growth potion")
+									print("You grow extraordinarily tall, but it's lonely up here. What would grandma think if she saw how fat you've gotten?")
+
+				if "★" in use_item:
+					print("You ought to save that for later.")
+			else:
+				print("You have nothing to use!")
+
+
+#if room_name == "tower":
+	#print(f"\nGrandma's cookbook is still on the table. (Press 'I' to interact.)")
+
+#if room_name == "cave":
+	#print(f"\nDank yellow-brown mushrooms glow in the darkness.\nThere is also a dark area of the cave you can't see.")
+
+#if room_name == "marshes":
+	#print(f"\nSky blue flowers poke out of the swamp.\nThere is also a foggy area across a lake.")
+
+#if room_name == "fields":
+	#print(f"\nOrange roots sprout up out of the grass.\nThe vast land looks too far to travel though.")
+
+#if room_name == "thicket":
+	#print(f"\nFuzzy bugs buzz around the bramble.\nThe rest of the thicket is blocked by huge wooden thorns.")
+
+#if room_name == "farms":
+	#print(f"\nTasty fruit ripens in the sun.\nThere is also a patch of ungrown bean seeds.")
+
+#if room_name == "cove":
+	#print(f"\nSuspicious snails ooze on the rocky shore.\nYou can feel something watching you from the watery depths...")
+
+#if room_name == "woods":
+	#print(f"\nPlayful butterflies dance in the underbrush.\nA strange nest sits in the treetops.")
+
+#if room_name == "grove":
+	#print(f"\nPeppery nuts fall from the leaves.\nA huge, watchful bear guards a stash of sparkly honey.")
 
 #quit choice, it just says goodbye and since the infinite loop doesn't like Q it will exit the program after.
 		elif choice == "Q":
