@@ -24,7 +24,12 @@ class Data():
 def main():
 	r = Data()
 
-	print("""	Welcome to Soup Generator!
+	print("""  ____                       ____                           _             
+ / ___|  ___  _   _ _ __    / ___| ___ _ __   ___ _ __ __ _| |_ ___  _ __ 
+ \___ \ / _ \| | | | '_ \  | |  _ / _ \ '_ \ / _ \ '__/ _` | __/ _ \| '__|
+  ___) | (_) | |_| | |_) | | |_| |  __/ | | |  __/ | | (_| | || (_) | |   
+ |____/ \___/ \__,_| .__/   \____|\___|_| |_|\___|_|  \__,_|\__\___/|_|   
+                   |_|                                                    
 ------------------------------------------
 ~Deep in the enchanted forest...
 A terrible dragon has been eating
@@ -130,6 +135,35 @@ Q - Quit
 
 		elif choice == "C":
 			print(menu)
+
+#operator commands choice that gives you items to make the game easy to test.
+		elif choice == "OPERATOR_COMMANDS_69":
+			print("you fly up off the ground, activating cheats. The dragon stands no chance now.")
+			bag_space += 100
+			bag.append("dank shroom")
+			bag.append("dank shroom")
+			bag.append("sky-blue flower")
+			bag.append("sky-blue flower")
+			bag.append("funky root")
+			bag.append("funky root")
+			bag.append("fuzz-butt")
+			bag.append("fuzz-butt")
+			bag.append("magic tomato")
+			bag.append("magic tomato")
+			bag.append("sus snail")
+			bag.append("sus snail")
+			bag.append("bubbly butterfly")
+			bag.append("bubbly butterfly")
+			bag.append("deez nuts")
+			bag.append("deez nuts")
+			bag.append("light potion")
+			bag.append("water - walking potion")
+			bag.append("speed potion")
+			bag.append("fire potion")
+			bag.append("growth potion")
+			bag.append("water - breathing potion")
+			bag.append("hover potion")
+			bag.append("invisibility potion")
 
 #this is the bag check choice, it just tells you what you have in your bag using len() and a for loop.
 		elif choice == "B":
@@ -460,7 +494,7 @@ You saved your sheep! Grandma would be proud.
 								if i == "magic tomato":
 									bag.remove("magic tomato")
 						if room_name == "farms":
-							if duece_beans == False:
+							if deuce_beans == False:
 								bag.remove("growth potion")
 								print("The beans grow into rare deuce beans ★! The stinky smell grew a little, too.")
 								bag_space += 1
@@ -511,7 +545,7 @@ You saved your sheep! Grandma would be proud.
 
 					if use_item == "invisibility potion":
 						if room_name != "grove":
-							bag.remove("invisibilty potion")
+							bag.remove("invisibility potion")
 							print("Hey look, you're invisible! This would be the best prank ever, but there's no one around to spook!")
 						else:
 							if poohs_honey == False:
@@ -525,15 +559,15 @@ You saved your sheep! Grandma would be proud.
 								print("You're invisibile, but grandma wouldn't want you to take such a risk for nothing. Best to play it safe.")
 
 					if use_item == "light potion":
-						if room_name != "cave" or room_name != "woods":
+						if room_name != "cave":
 							bag.remove("light potion")
 							print("I said, oooooooooOOOOOOOOooooooooohhhhhhhhh I'm blinded by the lights~ Unfortunately, your glowing skin is most unhelpful.")
-						if room_name == "woods":
-							bag.remove("light potion")
-							print("You glow defiantly under the shade of the trees. But your blinded butterflies are less impressed and leave you!")
-							for i in bag:
-								if i == "bubbly butterfly":
-									bag.remove("bubbly butterfly")
+							if room_name == "woods":
+								bag.remove("light potion")
+								print("You glow defiantly under the shade of the trees. But your blinded butterflies are less impressed and leave you!")
+								for i in bag:
+									if i == "bubbly butterfly":
+										bag.remove("bubbly butterfly")
 						if room_name == "cave":
 							if crystal_shard == False:
 								bag.remove("light potion")
@@ -543,18 +577,18 @@ You saved your sheep! Grandma would be proud.
 								crystal_shard = True
 							else:
 								bag.remove("light potion")
-								print("A soft glow fills the cave, but there's nothing left in here. It's interesting how boring this cave is.")
+								print("A soft glow fills the cave, but there's nothing left in here. It's super interesting how boring this cave is.")
 
 					if use_item == "water - walking potion":
-						if room_name != "cove" or room_name != "marshes":
+						if room_name != "marshes":
 							bag.remove("water - walking potion")
 							print("You feel the power of christ flowing within you. You know you can walk on water, but there's no water around to prove it. Well shoot.")
-						if room_name == "cove":
-							bag.remove("water - walking potion")
-							print("You step across the water of the cove, feeling magical. Your seasick snails, on the other hand, don't. They're quick to abandon ship.")
-							for i in bag:
-								if i == "sus snail":
-									bag.remove("sus snail")
+							if room_name == "cove":
+								bag.remove("water - walking potion")
+								print("You step across the water of the cove, feeling magical. Your seasick snails, on the other hand, don't. They're quick to abandon ship.")
+								for i in bag:
+									if i == "sus snail":
+										bag.remove("sus snail")
 						if room_name == "marshes":
 							if wisp_lily == False:
 								bag.remove("water - walking potion")
