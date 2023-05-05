@@ -482,7 +482,7 @@ You saved your sheep! Grandma would be proud.
 							if room_name == "cave" or room_name == "thicket" or room_name == "tower":
 								bag.remove("growth potion")
 								print("You grow tall enough to play basketball. Unfortunately, your size gets you stuck until it wears off. Kind of a BIG problem. heh heh..")
-							if room_name == "marshes" or room_name == "cove" or room_name == "grove" or room_name == "fields":
+							if room_name == "marshes" or room_name == "cove" or room_name == "fields":
 								bag.remove("growth potion")
 								print("You grow extraordinarily tall, but it's lonely up here. What would grandma think if she saw how fat you've gotten?")
 							if room_name == "grove":
@@ -499,7 +499,7 @@ You saved your sheep! Grandma would be proud.
 									print("The beans grow into rare deuce beans ★! The stinky smell grew a little, too.")
 									bag_space += 1
 									bag.append("deuce beans ★")
-									duece_beans = True
+									deuce_beans = True
 								else:
 									bag.remove("growth potion")
 									print("You grow extraordinarily tall, but it's lonely up here. What would grandma think if she saw how fat you've gotten?")
@@ -516,7 +516,7 @@ You saved your sheep! Grandma would be proud.
 							if room_name == "cove":
 								if silver_fish == False:
 									bag.remove("water - breathing potion")
-									print("You dive underwater and encounter a silver fish ★! Is soft scales glitter in the deep.")
+									print("You dive underwater and encounter a silver fish ★! Its soft scales glitter in the deep.")
 									bag_space += 2
 									bag.append("silver fish ★")
 									silver_fish = True
@@ -527,7 +527,7 @@ You saved your sheep! Grandma would be proud.
 						if use_item == "hover potion":
 							if room_name == "tower" or room_name == "cave":
 								bag.remove("hover potion")
-								print("You float up off the ground.. You can fly! Up until you bonk your head on the hard ceiling, that is.")
+								print("You float up off the ground... You can fly! Up until you bonk your head on the hard ceiling, that is.")
 							if room_name == "fields" or room_name == "marshes" or room_name == "thicket" or room_name == "farms" or room_name == "cove" or room_name == "grove":
 								bag.remove("hover potion")
 								print("You hover in the air, but there's not very many potion ingredients up here. You crash land on your rump, most unhelpfully.")
