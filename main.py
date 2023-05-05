@@ -23,7 +23,7 @@ class Data():
 #start the main function, and print the intro + the menu the first time around.
 def main():
 	r = Data()
-
+#Im boutta bust
 	print("""  ____                       ____                           _             
  / ___|  ___  _   _ _ __    / ___| ___ _ __   ___ _ __ __ _| |_ ___  _ __ 
  \___ \ / _ \| | | | '_ \  | |  _ / _ \ '_ \ / _ \ '__/ _` | __/ _ \| '__|
