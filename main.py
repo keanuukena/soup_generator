@@ -379,10 +379,10 @@ Q - Quit
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 ▒            ~~~ Dragon Soup ~~~            ▒
 ▒                                           ▒
-▒ #1 crystal shard ★   #2 wisp lily ★      ▒
-▒ #3 mega wheats ★     #4 stick bug ★      ▒
-▒ #5 deuce beans ★     #6 silver fish ★    ▒
-▒ #7 random egg ★      #8 pooh's honey ★   ▒
+▒ #1 crystal shard ★   #2 wisp lily ★       ▒
+▒ #3 mega wheats ★     #4 stick bug ★       ▒
+▒ #5 deuce beans ★     #6 silver fish ★     ▒
+▒ #7 random egg ★      #8 pooh's honey ★    ▒
 ▒                                           ▒
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒""")
 						if "crystal shard ★" in bag and "wisp lily ★" in bag and "mega wheats ★" in bag and "stick bug ★" in bag and "deuce beans ★" in bag and "silver fish ★" in bag and "random egg ★" in bag and "pooh's honey ★" in bag:
@@ -450,6 +450,7 @@ played by Dwayne Johnson       '.     /
 
 ¯\_(ツ)_/¯       ~ You ~
            played by Donald Duck
+
 
 
 ~~~ Thanks for playing! ~~~
@@ -676,7 +677,12 @@ played by Dwayne Johnson       '.     /
 
 #quit choice, it just says goodbye and since the infinite loop doesn't like Q it will exit the program after.
 		elif choice == "Q":
-			print("Goodbye!")
+			quit_choice = input("Are you sure you want to quit? (y/n)\n")
+			quit_choice = quit_choice.lower()
+			if quit_choice == "y":
+				print("Goodbye!")
+			else:
+				choice = "C"
 
 #else, print "that wasn't a choice!". This is just a bootleg try/except failsafe to catch silly responses. It does nothing but loop back around.
 		else:
