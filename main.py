@@ -1,3 +1,6 @@
+#import the pickles! We'll need them to save progress.
+import pickle
+
 #room class. I'm still not 100% there with how this magic goober works. But it does and it has royally saved my broken room coordinate system. :/
 class Data():
 	def __init__(self):
@@ -23,7 +26,6 @@ class Data():
 #start the main function, and print the intro + the menu the first time around.
 def main():
 	r = Data()
-#Im boutta bust
 	print("""  ____                       ____                           _             
  / ___|  ___  _   _ _ __    / ___| ___ _ __   ___ _ __ __ _| |_ ___  _ __ 
  \___ \ / _ \| | | | '_ \  | |  _ / _ \ '_ \ / _ \ '__/ _` | __/ _ \| '__|
@@ -49,6 +51,8 @@ N, E, S, or W - Move
 B - Bag
 U - Use an item
 I - Interact
+SAVE - Save your game
+LOAD - Load a save file
 Q - Quit
 """
 
@@ -133,6 +137,18 @@ Q - Quit
 		if choice == "M":
 			print(map)
 
+#save and load choices. This is actually simpler than I thought, plus I just have to save your inventory and some variables.
+		elif choice == "SAVE":
+			print("Your game has been saved.")
+			with open("Soup_Generator.dat", "wb") as file:
+				pickle.dump((bag, bag_space, mega_wheats, stick_bug, deuce_beans, silver_fish, random_egg, poohs_honey, crystal_shard, wisp_lily), file)
+
+		elif choice == "LOAD":
+			print("Your game has been loaded.")
+			with open("Soup_Generator.dat", "rb") as file:
+				loaded_data = pickle.load(file)
+			bag, bag_space, mega_wheats, stick_bug, deuce_beans, silver_fish, random_egg, poohs_honey, crystal_shard, wisp_lily = loaded_data
+
 		elif choice == "C":
 			print(menu)
 
@@ -157,11 +173,11 @@ Q - Quit
 			bag.append("deez nuts")
 			bag.append("deez nuts")
 			bag.append("light potion")
-			bag.append("water - walking potion")
+			bag.append("water walking potion")
 			bag.append("speed potion")
 			bag.append("fire potion")
 			bag.append("growth potion")
-			bag.append("water - breathing potion")
+			bag.append("water breathing potion")
 			bag.append("hover potion")
 			bag.append("invisibility potion")
 
@@ -232,7 +248,7 @@ Q - Quit
 					if page == "1":
 						print("""
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-▒ light potion:       ▒ water - walking:    ▒
+▒ light potion:       ▒ water walking:      ▒
 ▒                     ▒                     ▒
 ▒ #1 dank shroom      ▒ #1 sky-blue flower  ▒
 ▒ #2 fuzz-butt        ▒ #2 magic tomato     ▒
@@ -251,14 +267,14 @@ Q - Quit
 								page = "6"
 
 						if "sky-blue flower" in bag and "magic tomato" in bag and "bubbly butterfly" in bag:
-							ask_make = input("Do you want to make a water - walking potion? (y/n)\n")
+							ask_make = input("Do you want to make a water walking potion? (y/n)\n")
 							ask_make = ask_make.lower()
 							if ask_make == "y":
 								print("Your ice-blue potion splashes around in a bottle!")
 								bag.remove("sky-blue flower")
 								bag.remove("magic tomato")
 								bag.remove("bubbly butterfly")
-								bag.append("water - walking potion")
+								bag.append("water walking potion")
 								page = "6"
 
 
@@ -297,7 +313,7 @@ Q - Quit
 					elif page == "3":
 						print("""
 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-▒ growth potion:      ▒ water - breathing:  ▒
+▒ growth potion:      ▒ water breathing:    ▒
 ▒                     ▒                     ▒
 ▒ #1 magic tomato     ▒ #1 sus snail        ▒
 ▒ #2 sky-blue flower  ▒ #2 dank shroom      ▒
@@ -316,14 +332,14 @@ Q - Quit
 								page = "6"
 
 						if "sus snail" in bag and "dank shroom" in bag and "funky root" in bag:
-							ask_make = input("Do you want to make a water - breathing potion? (y/n)\n")
+							ask_make = input("Do you want to make a water breathing potion? (y/n)\n")
 							ask_make = ask_make.lower()
 							if ask_make == "y":
 								print("Your deep blue potion rolls around in a bottle!")
 								bag.remove("sus snail")
 								bag.remove("dank shroom")
 								bag.remove("funky root")
-								bag.append("water - breathing potion")
+								bag.append("water breathing potion")
 								page = "6"
 
 					elif page == "4":
@@ -380,9 +396,63 @@ And sharing your soup, the dragon is content. He'll no longer eat your sheep one
 "I daresay I'm sorry", the dragon replies. And back off too sleep, the dragon flies.
 
 You saved your sheep! Grandma would be proud.
+ _____ _          _____       _ 
+|_   _| |_ ___   |   __|___ _| |
+  | | |   | -_|  |   __|   | . |
+  |_| |_|_|___|  |_____|_|_|___|
 
-~~~       THE END       ~~~
 
+
+CREDITS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                \||/
+                |  @___oo
+      /\  /\   / (__,,,,|
+     ) /^\) ^\/ _)
+     )   /^\/   _)
+     )   _ /  / _)          ~ Dragon ~
+ /\  )/\/ ||  | )_)     played by Jack Black
+<  >      |(,,) )__)
+ ||      /    \)___)
+ | \____(      )___) )___
+  \______(_______;;; __;;;
+
+
+ __________
+/          |
+|          |
+|    RIP   |          ~ Grandma ~
+|          |       played by Ryan Reynolds
+|          |
+|          |
+
+
+
+  _,-""`""-~`)
+(`~_,=========)
+ |---,___.-.__,)
+ |        o     \ ___  _,,,,_     _.--.
+  \      `^`    /`_.-"~      `~-;`     )
+   \_      _  .'                 `,     |
+     |`-                           )'__/ 
+    /                      ,_       \  `'-. 
+   /    .-""~~--.            `"-,   ;_    /
+  |              \               \  | `""`
+   \__.--'`"-.   /_               |'
+              `"`  `~~~---..,     |
+                             \ _.-'`-.
+    ~ Bear ~                  \       )
+played by Dwayne Johnson       '.     /
+                                 `"~"`
+
+
+
+¯\_(ツ)_/¯       ~ You ~
+           played by Donald Duck
+
+
+~~~ Thanks for playing! ~~~
 """)
 								page = "6"
 								game_end = True
@@ -446,7 +516,7 @@ You saved your sheep! Grandma would be proud.
 									bag.remove("dank shroom")
 							else:
 								if mega_wheats == False:
-									print("You zoom across the wide open plane, frolicking in the meadows. Oh hey, you found the legendary mega wheats! You've only ever eaten the mini kind.")
+									print("You zoom across the wide open plane, frolicking in the meadows. Oh hey, you found the legendary mega wheats ★! You've only ever eaten the mini kind.")
 									bag_space += 1
 									bag.remove("speed potion")
 									bag.append("mega wheats ★")
@@ -470,7 +540,7 @@ You saved your sheep! Grandma would be proud.
 							if room_name == "thicket":
 								if stick_bug == False:
 									bag.remove("fire potion")
-									print("You torch the thicket, blasting through as 'how bad could I possibly be' plays in your head. Hey, you found a dancing stick bug on the other side.")
+									print("You torch the thicket, blasting through as 'how bad could I possibly be' plays in your head. Hey, you found a dancing stick bug ★ on the other side.")
 									bag_space += 2
 									bag.append("stick bug ★")
 									stick_bug = True
@@ -504,24 +574,24 @@ You saved your sheep! Grandma would be proud.
 									bag.remove("growth potion")
 									print("You grow extraordinarily tall, but it's lonely up here. What would grandma think if she saw how fat you've gotten?")
 
-						if use_item == "water - breathing potion":
+						if use_item == "water breathing potion":
 							if room_name != "marshes" and room_name != "cove":
-								bag.remove("water - breathing potion")
+								bag.remove("water breathing potion")
 								print("Your respiratory system changes, and now no amount of water can stand in your way! ..if only there was some water nearby.")
 							if room_name == "marshes":
-								bag.remove("water - breathing potion")
+								bag.remove("water breathing potion")
 								print("You dive into the lake, ready to swim to the other side. Suddenly, a swamp monster kindly removes you from his territory. He also took your funky roots!")
 								while "funky root" in bag:
 									bag.remove("funky root")
 							if room_name == "cove":
 								if silver_fish == False:
-									bag.remove("water - breathing potion")
+									bag.remove("water breathing potion")
 									print("You dive underwater and encounter a silver fish ★! Its soft scales glitter in the deep.")
 									bag_space += 2
 									bag.append("silver fish ★")
 									silver_fish = True
 								else:
-									bag.remove("water - breathing potion")
+									bag.remove("water breathing potion")
 									print("Unfortunately, water breathing snails are a bit harder to come by, and there's nothing interesting underwater.")
 
 						if use_item == "hover potion":
@@ -577,24 +647,24 @@ You saved your sheep! Grandma would be proud.
 									bag.remove("light potion")
 									print("A soft glow fills the cave, but there's nothing left in here. It's super interesting how boring this cave is.")
 
-						if use_item == "water - walking potion":
+						if use_item == "water walking potion":
 							if room_name != "marshes" and room_name != "cove":
-								bag.remove("water - walking potion")
+								bag.remove("water walking potion")
 								print("You feel the power of christ flowing within you. You know you can walk on water, but there's no water around to prove it. Well shoot.")
 							if room_name == "cove":
-								bag.remove("water - walking potion")
+								bag.remove("water walking potion")
 								print("You step across the water of the cove, feeling magical. Your seasick snails, on the other hand, don't. They're quick to abandon ship.")
 								while "sus snail" in bag:
 									bag.remove("sus snail")
 							if room_name == "marshes":
 								if wisp_lily == False:
-									bag.remove("water - walking potion")
+									bag.remove("water walking potion")
 									print("You cross the lake, thoroughly confusing some boaters as you pass. On the other side you find a wisp lily ★! I thought they were extinct.")
 									bag_space += 2
 									bag.append("wisp lily ★")
 									wisp_lily = True
 								else:
-									bag.remove("water - walking potion")
+									bag.remove("water walking potion")
 									print("You cross the lake, but there's nothing left on this side of the swamp but an ogre you'd rather not annoy.")
 					else:
 						print("That wasn't in your bag! (Maybe a spelling error?)")
