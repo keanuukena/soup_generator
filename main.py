@@ -86,7 +86,7 @@ Q - Quit
 			print(f"\nGrandma's cookbook is still on the table. (Press 'I' to interact.)")
 
 		if room_name == "cave":
-			print(f"\nDank yellow-brown mushrooms glow in the darkness.\nThere is also a dark area of the cave you can't see.")
+			print(f"\nDank yellow-brown mushrooms glow in the darkness.\nThere is also a area of the cave you can't see.")
 		
 		if room_name == "marshes":
 			print(f"\nSky blue flowers poke out of the swamp.\nThere is also a foggy area across a lake.")
@@ -129,7 +129,7 @@ Q - Quit
 			print("Your bag is full!")
 			del bag[bag_space]
 
-#this is the input engine, it re-prints the menu, takes and capitalizes your choice so it's ready for processing.
+#this is the input engine, it takes and capitalizes your choice so it's ready for processing.
 		choice = input("What is your choice?\n")
 		choice = choice.upper()
 
@@ -137,7 +137,7 @@ Q - Quit
 		if choice == "M":
 			print(map)
 
-#save and load choices. This is actually simpler than I thought, plus I just have to save your inventory and some variables.
+#save and load choices. This is actually simpler than I thought, plus I just have to save the inventory and some variables.
 		elif choice == "SAVE":
 			print("Your game has been saved.")
 			with open("Soup_Generator.dat", "wb") as file:
@@ -149,11 +149,12 @@ Q - Quit
 				loaded_data = pickle.load(file)
 			bag, bag_space, mega_wheats, stick_bug, deuce_beans, silver_fish, random_egg, poohs_honey, crystal_shard, wisp_lily = loaded_data
 
+#controls choice. This re-prints the menu so that you remember the controls.
 		elif choice == "C":
 			print(menu)
 
-#operator commands choice that gives you items to make the game easy to test.
-		elif choice == "OPERATOR COMMANDS 69":
+#operator commands choice that gives you items to make the game easy to test. I've disabled it after testing but the code is still here.
+		elif choice == "operator commands 69":
 			print("you fly up off the ground, activating cheats. The dragon stands no chance now.")
 			bag_space += 100
 			bag.append("dank shroom")
@@ -181,7 +182,7 @@ Q - Quit
 			bag.append("hover potion")
 			bag.append("invisibility potion")
 
-#this is the bag check choice, it just tells you what you have in your bag using len() and a for loop.
+#this is the bag check choice, it just tells you what you have in your bag using len() and a 'for loop'.
 		elif choice == "B":
 			if len(bag) > 0:
 				bag.sort()
@@ -423,7 +424,7 @@ CREDITS
 /          |
 |          |
 |    RIP   |          ~ Grandma ~
-|          |       played by Ryan Reynolds
+|          |    played by Ryan Reynolds
 |          |
 |          |
 
@@ -484,7 +485,7 @@ played by Dwayne Johnson       '.     /
 			room_name = (room(r))
 
 #this is the use_item processor. It's the chunkiest block of code for sure, but it's the whole game pretty much. It uses your potions to pass/fail on collecting tier 2 ingredients.
-#It also ensures you don't waste tier 2 ingredients, (because you can't get them back), upgrades your bag, drops worthless items, etc.
+#It also ensures you don't waste tier 2 ingredients, (because you can't get them back), upgrades your bag, drops worthless items, etc. It runs on a billion 'if' statements.
 		elif choice == "U":
 			if len(bag) > 0:
 				bag.sort()
@@ -631,7 +632,7 @@ played by Dwayne Johnson       '.     /
 						if use_item == "light potion":
 							if room_name != "cave" and room_name != "woods":
 								bag.remove("light potion")
-								print("I said, oooooooooOOOOOOOOooooooooohhhhhhhhh I'm blinded by the lights~ Unfortunately, your glowing skin is most unhelpful.")
+								print("I said, oooooooooOOOOOOOOooooooooohhhhhhhh I'm blinded by the lights~ Unfortunately, your glowing skin is most unhelpful.")
 							if room_name == "woods":
 								bag.remove("light potion")
 								print("You glow defiantly under the shade of the trees. But your blinded butterflies are less impressed and leave you!")
@@ -675,7 +676,7 @@ played by Dwayne Johnson       '.     /
 			else:
 				print("You have nothing to use!")
 
-#quit choice, it just says goodbye and since the infinite loop doesn't like Q it will exit the program after.
+#quit choice, it just says goodbye and since the infinite loop doesn't like 'Q' it will exit the program after.
 		elif choice == "Q":
 			quit_choice = input("Are you sure you want to quit? (y/n)\n")
 			quit_choice = quit_choice.lower()
@@ -688,7 +689,7 @@ played by Dwayne Johnson       '.     /
 		else:
 			print("That wasn't a choice!")
 
-#data processor, this thing uses if statements to process your coordinates and change 'data' to the right room, which can be used by the room class I think.
+#data processor, this thing uses 'if' statements to process your coordinates and change 'data' to the right room, which can be used by the room class I think.
 def room(r):
 	data = "cheese"
 	if r.room_x_axis == 1 and r.room_y_axis == 1:
